@@ -9,6 +9,7 @@ void main() {
 }
 
 List<String> imgList = ['assets/2.png', 'assets/2.png', 'assets/2.png'];
+double height = 250;
 
 class Home extends StatelessWidget {
   Home({super.key});
@@ -25,27 +26,40 @@ class Home extends StatelessWidget {
                         fit: BoxFit.cover, width: double.infinity),
                     Padding(
                       padding: const EdgeInsets.all(10.0),
-                      child: Column(
-                        children: [
+                      child: Column(children: [
                         Text(
                           'Gasteria Kyoryo',
                           style: TextStyle(fontSize: 25),
                         ),
-                        Text('W 300 x H 310 MM', style: TextStyle(color: Colors.grey),),
-                        SizedBox(height: 210,),
+                        Text(
+                          'W 300 x H 310 MM',
+                          style: TextStyle(color: Colors.grey),
+                        ),
+                        SizedBox(
+                          height: height,
+                        ),
                         Row(
                           children: [
                             Text(
-                              'data',
+                              'Rs. 300',
+                              style: TextStyle(fontSize: 20),
                             ),
                             SizedBox(
-                              width: 200,
+                              width: 160,
                             ),
-                            IconButton(
-                              onPressed: () {},
-                              icon: Icon(Icons.add),
-                              color: Colors.green,
-                            )
+                            ClipRRect(
+                              borderRadius: BorderRadius.only(
+                                  topLeft: Radius.circular(20),
+                                  bottomRight: Radius.circular(20)),
+                              child: Container(
+                                color: Colors.green[900],
+                                child: IconButton(
+                                  onPressed: () {},
+                                  icon: Icon(Icons.add),
+                                  color: Colors.white,
+                                ),
+                              ),
+                            ),
                           ],
                         ),
                       ]),
@@ -74,7 +88,6 @@ class Home extends StatelessWidget {
               Icons.notifications,
               color: Colors.black,
               size: 30,
-              
             ),
             padding: EdgeInsets.symmetric(horizontal: 10, vertical: 20),
           ),
@@ -99,10 +112,19 @@ class Home extends StatelessWidget {
               children: [
                 Text(
                   'Concept',
-                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                  style: TextStyle(
+                      fontSize: 20,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.green[900]),
                 ),
-                Text('Popular'),
-                Text('New'),
+                Text(
+                  'Popular',
+                  style: TextStyle(color: Colors.grey),
+                ),
+                Text(
+                  'New',
+                  style: TextStyle(color: Colors.grey),
+                ),
               ],
             ),
           ),
@@ -117,12 +139,17 @@ class Home extends StatelessWidget {
             options: CarouselOptions(
               autoPlay: false,
               aspectRatio: 1.0,
-              enlargeCenterPage: true,
+              enlargeCenterPage: false,
             ),
             items: imageSliders,
           ),
         ],
       ),
+      bottomNavigationBar: BottomNavigationBar(items: [
+        BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
+        BottomNavigationBarItem(icon: Icon(Icons.inbox), label: 'Inbox'),
+        BottomNavigationBarItem(icon: Icon(Icons.person), label: 'Profile'),
+      ]),
     );
   }
 }
